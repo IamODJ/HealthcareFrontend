@@ -41,18 +41,20 @@ const Navbar = (props) => {
           <Avatar src="/logo192.png" style={{ marginRight: "5px" }} />
           <Typography variant="h6"> Vaccination Slot Booking Portal</Typography>
           {props.statsTab ? (
-            <Tabs
-              value={props.currTab}
-              onChange={props.handleChange}
-              TabIndicatorProps={{ style: { background: "#ffffff" } }}
-            >
-              <Tab
-                inkBarStyle={{ background: "#ffffff" }}
-                label="STATISTICS"
-                className="fullheight"
-              />
-              <Tab label="ADD SLOTS" className="fullheight" />
-            </Tabs>
+            <div style={{ display: "grid" }}>
+              <Tabs
+                value={props.currTab}
+                onChange={props.handleChange}
+                TabIndicatorProps={{ style: { background: "#ffffff" } }}
+              >
+                <Tab
+                  inkBarStyle={{ background: "#ffffff" }}
+                  label="STATISTICS"
+                  className="fullheight"
+                />
+                <Tab label="ADD SLOTS" className="fullheight" />
+              </Tabs>
+            </div>
           ) : (
             ""
           )}

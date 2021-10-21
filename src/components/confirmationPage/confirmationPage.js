@@ -11,6 +11,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import AvailableSlots from "../availableSlots/availableSlots";
 import BookingCard from "../bookingCard/bookingCard";
 import GeneratedCard from "../generatedCard/generatedCard";
+import html2canvas from "html2canvas";
 import QRCode from "qrcode.react";
 import ReactToPdf from "react-to-pdf";
 import GetAppOutlinedIcon from "@material-ui/icons/GetAppOutlined";
@@ -78,6 +79,7 @@ const ConfirmationPage = (props) => {
   }));
   const downloadQRCode = (arr, payload) => {
     enqueueSnackbar("Generating PDF, please wait.");
+
     // const qrCodeURL = document
     //   .getElementById("qrCodeEl")
     //   .toDataURL("image/png")
@@ -140,14 +142,14 @@ const ConfirmationPage = (props) => {
     doc.setFontSize(15);
     doc.text("QR code", leftMargin + 75, line);
     line = line + 8;
-    var imgGg = new Image();
-    imgGg.onload = function () {
-      doc.addImage(imgGg, "PNG", leftMargin + 65, line, 40, 40);
+    const input = document.getElementById("qrCodeEl");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("img/png");
+      doc.addImage(imgData, "PNG", leftMargin + 65, line, 40, 40);
+      // pdf.output('dataurlnewwindow');
+      doc.save("download.pdf");
       closeSnackbar();
-      doc.save("Confirmation.pdf");
-    };
-    console.log(imgGg);
-    imgGg.src = `https://api.qrserver.com/v1/create-qr-code/?data=${payload}&amp;size=150x150`;
+    });
   };
 
   const classes = useStyles();
