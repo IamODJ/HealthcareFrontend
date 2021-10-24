@@ -153,7 +153,7 @@ const Addslots = (props) => {
   }));
   React.useEffect(() => {
       const requestOptions = {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("userTokenStaff")}`,
@@ -168,7 +168,6 @@ const Addslots = (props) => {
         })
         .then((data) => {
           console.log(data);
-          setSlotInfo(data.slots);
           setLoading(false);
         })
         .catch((err) => {
@@ -242,7 +241,7 @@ const Addslots = (props) => {
           <Card style={{ margin: "20px", width: "60%", margin: "auto" }}>
             <div style={{ display: "grid" }}>
               <CardHeader
-                title="Add Slots (20 August)"
+                title="Add Slots (for today)"
                 subheader="Select the appropriate tags to add slots for today."
               />
             </div>

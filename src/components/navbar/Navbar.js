@@ -40,8 +40,8 @@ const Navbar = (props) => {
         <Toolbar>
           <Avatar src="/logo192.png" style={{ marginRight: "5px" }} />
           <Typography variant="h6"> Vaccination Slot Booking Portal</Typography>
+          <div style={{flexGrow:1}}/>
           {props.statsTab ? (
-            <div style={{ display: "grid" }}>
               <Tabs
                 value={props.currTab}
                 onChange={props.handleChange}
@@ -54,17 +54,16 @@ const Navbar = (props) => {
                 />
                 <Tab label="ADD SLOTS" className="fullheight" />
               </Tabs>
-            </div>
           ) : (
             ""
           )}
-          <div style={{ flexGrow: 1 }}></div>
           <IconButton
             edge="end"
             color="inherit"
             onClick={() => {
               localStorage.setItem("phoneNo", "");
               localStorage.setItem("userToken", "");
+              localStorage.setItem("userTokenStaff", "");
               props.history.replace("/signinotp");
             }}
           >

@@ -69,7 +69,7 @@ const Login = (props) => {
   React.useEffect(() => {
     var userTokenStaff = localStorage.getItem("userTokenStaff");
     const isMyTokenExpired = isExpired(userTokenStaff);
-    if (!isMyTokenExpired || userTokenStaff === "") {
+    if (!isMyTokenExpired && userTokenStaff !== "") {
       history.replace({
         pathname: "/dashboard",
         state: { fromApp: true, jwt: userTokenStaff },
@@ -184,6 +184,7 @@ const Login = (props) => {
                       }
                       label="Password"
                       margin="normal"
+                      type="password"
                       name="password"
                       onBlur={handleBlur}
                       onChange={handleChange}
